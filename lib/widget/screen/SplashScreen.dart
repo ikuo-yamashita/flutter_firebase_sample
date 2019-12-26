@@ -2,7 +2,9 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/api/firebase/Auth.dart';
-import 'package:flutter_app/widget/screen/RootScreen.dart';
+import 'HomeScreen.dart';
+import 'SignInScreen.dart';
+import 'SignUpScreen.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -15,9 +17,17 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
+  AuthStatus _authStatus = AuthStatus.notSignedIn;
+
   @override
   void initState() {
     super.initState();
+
+    // Firebase 認証
+    widget.auth.currentUser().then((userId) {
+      _authStatus = userId != null ? AuthStatus.signedIn : AuthStatus.notSignedIn;
+    });
+
     _startTimer();
   }
 
@@ -34,10 +44,23 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _startTimer() async {
     Timer(Duration(seconds: 3), () {
-      // 置き換えて遷移する（backで戻れないように）
-      Navigator.pushReplacement(context, MaterialPageRoute(
-          builder: (context) => new RootScreen(auth: widget.auth)
-      ));
+      switch (_authStatus) {
+        case AuthStatus.notSignedIn:
+          Navigator.pushReplacement(context, MaterialPageRoute(
+              builder: (context) => new SignInScreen(title: 'SignIn', auth: widget.auth)
+          ));
+          break;
+        case AuthStatus.signedUp:
+          Navigator.push(context, MaterialPageRoute(
+              builder: (context) => new SignUpScreen(title: 'SignUp', auth: widget.auth)
+          ));
+          break;
+        case AuthStatus.signedIn:
+          Navigator.pushReplacement(context, MaterialPageRoute(
+              builder: (context) => new HomeScreen(title: 'Home', auth: widget.auth)
+          ));
+          break;
+      }
     });
   }
 

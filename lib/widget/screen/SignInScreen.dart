@@ -4,12 +4,13 @@ import 'package:flutter_app/api//model/User.dart';
 import 'package:flutter_app/widget/component/PrimaryButton.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
+import 'HomeScreen.dart';
+import 'SignUpScreen.dart';
+
 class SignInScreen extends StatefulWidget {
-  SignInScreen({Key key, this.title, this.auth, this.onSignIn, this.onSignUp}) : super(key: key);
+  SignInScreen({Key key, this.title, this.auth}) : super(key: key);
   final String title;
   final BaseAuth auth;
-  final VoidCallback onSignIn;
-  final VoidCallback onSignUp;
 
   @override
   _SignInScreenState createState() => _SignInScreenState();
@@ -43,7 +44,13 @@ class _SignInScreenState extends State<SignInScreen> {
       try {
         progress.show();
         await widget.auth.signIn(_user.email, _user.password);
-        widget.onSignIn();
+        if (progress.isShowing()) {
+          progress.hide();
+          progress.dismiss();
+        }
+        Navigator.pushReplacement(context, MaterialPageRoute(
+            builder: (context) => new HomeScreen(title: 'Home', auth: widget.auth)
+        ));
       } catch (e) {
         setState(() {
           _authHint = 'サインインでエラーが発生しました。\n\n${e.toString()}';
@@ -63,12 +70,13 @@ class _SignInScreenState extends State<SignInScreen> {
     setState(() {
       _authHint = '';
     });
-    widget.onSignUp();
+    Navigator.push(context, MaterialPageRoute(
+        builder: (context) => new SignUpScreen(title: 'SignUp', auth: widget.auth)
+    ));
   }
 
   Widget hintText() {
     return new Container(
-      //height: 80.0,
         padding: const EdgeInsets.all(32.0),
         child: new Text(
             _authHint,

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/api/firebase/Auth.dart';
-import 'package:flutter_app/widget/component/AppDrawer.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:progress_dialog/progress_dialog.dart';
+
+import 'SignInScreen.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key, this.title, this.auth, this.onSignOut}) : super(key: key);
+  HomeScreen({Key key, this.title, this.auth}) : super(key: key);
   final String title;
   final BaseAuth auth;
-  final VoidCallback onSignOut;
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -15,6 +17,27 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  void onSignOut() {
+
+    try {
+      widget.auth.signOut();
+      Navigator.pushReplacement(context, MaterialPageRoute(
+          builder: (context) => new SignInScreen(title: 'SignIn', auth: widget.auth)
+      ));
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: 'サインアウトでエラーが発生しました。\n\n${e.toString()}',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIos: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 12.0
+      );
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +48,28 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: Text('Home'),
       ),
-      drawer: AppDrawer(auth: widget.auth, onSignOut: widget.onSignOut),
+      drawer: new Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('メニュー'),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/splash.png'),
+                  fit: BoxFit.fill,
+                  alignment: Alignment.center,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('サインアウト'),
+              onTap: onSignOut,
+            ),
+          ],
+        ),
+      ),
     );
   }
+
 }

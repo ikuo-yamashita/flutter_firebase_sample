@@ -2,22 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/api/firebase/Auth.dart';
 import 'package:flutter_app/api//model/User.dart';
 import 'package:flutter_app/widget/component/PrimaryButton.dart';
+import 'package:flutter_app/widget/screen/HomeScreen.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
 class SignUpScreen extends StatefulWidget {
-  SignUpScreen({Key key, this.title, this.auth, this.onSignOut, this.onSignIn}) : super(key: key);
+  SignUpScreen({Key key, this.title, this.auth}) : super(key: key);
   final String title;
   final BaseAuth auth;
-  final VoidCallback onSignOut;
-  final VoidCallback onSignIn;
 
   @override
   _SignUpState createState() => new _SignUpState();
-}
-
-enum FormType {
-  login,
-  register
 }
 
 class _SignUpState extends State<SignUpScreen> {
@@ -39,7 +33,7 @@ class _SignUpState extends State<SignUpScreen> {
     setState(() {
       _authHint = '';
     });
-    widget.onSignOut();
+    Navigator.pop(context);
   }
 
   void onPressSignUp() async {
@@ -52,11 +46,18 @@ class _SignUpState extends State<SignUpScreen> {
       final ProgressDialog progress = new ProgressDialog(context);
       try {
         progress.show();
-        await widget.auth.createUser(_user.email, _user.password, _user.displayName, _user.photoUrl);
-        widget.onSignIn();
+        await widget.auth.createUser(_user.email, _user.password, _user.displayName);
+        await widget.auth.signIn(_user.email, _user.password);
+        if (progress.isShowing()) {
+          progress.hide();
+          progress.dismiss();
+        }
+        Navigator.pushReplacement(context, MaterialPageRoute(
+            builder: (context) => new HomeScreen(title: 'Home', auth: widget.auth)
+        ));
       } catch (e) {
         setState(() {
-          _authHint = 'サインインでエラーが発生しました。\n\n${e.toString()}';
+          _authHint = 'サインアップでエラーが発生しました。\n\n${e.toString()}';
         });
         print(e);
       } finally {
@@ -128,6 +129,13 @@ class _SignUpState extends State<SignUpScreen> {
     );
   }
 
+  Widget padded({Widget child}) {
+    return new Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.0),
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -162,11 +170,5 @@ class _SignUpState extends State<SignUpScreen> {
     );
   }
 
-  Widget padded({Widget child}) {
-    return new Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.0),
-      child: child,
-    );
-  }
 }
 

@@ -1,12 +1,12 @@
 import 'package:intl/intl.dart';
 
 abstract class BaseUtil {
-  String getNowDateAndTime();
+  String nowDatetimeString();
 }
 
 class Util implements BaseUtil {
 
-  String getNowDateAndTime() {
+  String nowDatetimeString() {
     var now = new DateTime.now();
     var formatter = new DateFormat('yyyy-MM-dd HH:mm:ss');
     String formatted = formatter.format(now);
