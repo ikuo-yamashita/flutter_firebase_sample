@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/api/firebase/Auth.dart';
-import 'package:flutter_app/widget/screen/SplashScreen.dart';
+import 'package:flutter_firebase_sample/api/firebase/Auth.dart';
+import 'package:flutter_firebase_sample/widget/screen/SplashScreen.dart';
 
 
 void main() => runApp(new MyApp());

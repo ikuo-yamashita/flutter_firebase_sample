@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/api/firebase/Auth.dart';
+import 'package:flutter_firebase_sample/api/firebase/Auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:progress_dialog/progress_dialog.dart';
 
 import 'SignInScreen.dart';
 

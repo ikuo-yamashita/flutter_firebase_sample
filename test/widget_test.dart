@@ -6,8 +6,8 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/api/firebase/Auth.dart';
-import 'package:flutter_app/widget/screen/SplashScreen.dart';
+import 'package:flutter_firebase_sample/api/firebase/Auth.dart';
+import 'package:flutter_firebase_sample/widget/screen/SplashScreen.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

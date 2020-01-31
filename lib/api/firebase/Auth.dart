@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_app/util/Util.dart';
+import 'package:flutter_firebase_sample/util/Util.dart';
 
 abstract class BaseAuth {
   Future<String> signIn(String email, String password);
@@ -40,7 +40,7 @@ class Auth implements BaseAuth {
     var db = Firestore.instance;
     await db.collection("users").document(user.uid).updateData({
       "deviceToken": token,
-      "signInAt": _util.nowDatetimeString()
+      "lastSignInTimestamp": _util.nowDatetimeString()
     });
 
     return user.uid;
@@ -55,16 +55,16 @@ class Auth implements BaseAuth {
     FirebaseUser user = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
 
     // deviceToken取得
-    String _token = await _firebaseMessaging.getToken();
+    String token = await _firebaseMessaging.getToken();
 
     // Usersテーブル作成
     var db = Firestore.instance;
     await db.collection("users").document(user.uid).setData({
-      "deviceToken": _token,
+      "deviceToken": token,
       "displayName": displayName,
-      "createdAt": _util.nowDatetimeString(),
-      "updatedAt": _util.nowDatetimeString(),
-      "deletedAt": ''
+      "creationTimestamp" : _util.nowDatetimeString(),
+      "lastUpdateTimestamp" : _util.nowDatetimeString(),
+      "lastSignInTimestamp" : _util.nowDatetimeString()
     });
 
     return user.uid;
@@ -75,14 +75,14 @@ class Auth implements BaseAuth {
     FirebaseUser user = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
 
     // deviceToken取得
-    String _token = await _firebaseMessaging.getToken();
+    String token = await _firebaseMessaging.getToken();
 
     // Usersテーブル作成
     var db = Firestore.instance;
     await db.collection("users").document(user.uid).updateData({
-      "deviceToken": _token,
+      "deviceToken": token,
       "displayName": displayName,
-      "updatedAt": _util.nowDatetimeString()
+      "lastUpdateTimestamp" : _util.nowDatetimeString()
     });
 
     return user.uid;

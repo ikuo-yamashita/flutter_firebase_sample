@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/api/firebase/Auth.dart';
+import 'package:flutter_firebase_sample/api/firebase/Auth.dart';
 import 'HomeScreen.dart';
 import 'SignInScreen.dart';
 import 'SignUpScreen.dart';

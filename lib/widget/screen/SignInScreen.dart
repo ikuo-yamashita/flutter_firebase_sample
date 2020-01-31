@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/api/firebase/Auth.dart';
-import 'package:flutter_app/api//model/User.dart';
-import 'package:flutter_app/widget/component/PrimaryButton.dart';
+import 'package:flutter_firebase_sample/api/firebase/Auth.dart';
+import 'package:flutter_firebase_sample/api//model/User.dart';
+import 'package:flutter_firebase_sample/widget/component/PrimaryButton.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
 import 'HomeScreen.dart';
