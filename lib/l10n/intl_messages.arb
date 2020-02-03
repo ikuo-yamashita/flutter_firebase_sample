@@ -1,0 +1,111 @@
+{
+  "@@last_modified": "2020-02-03T16:31:54.882627",
+  "displayName": "表示名",
+  "@displayName": {
+    "description": "共通ワード",
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Eメール",
+  "@email": {
+    "description": "共通ワード",
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "パスワード",
+  "@password": {
+    "description": "共通ワード",
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "ホーム",
+  "@home": {
+    "description": "タイトル",
+    "type": "text",
+    "placeholders": {}
+  },
+  "menu": "メニュー",
+  "@menu": {
+    "description": "タイトル",
+    "type": "text",
+    "placeholders": {}
+  },
+  "signIn": "サインイン",
+  "@signIn": {
+    "description": "サインイン",
+    "type": "text",
+    "placeholders": {}
+  },
+  "signOut": "サインアウト",
+  "@signOut": {
+    "description": "サインアウト",
+    "type": "text",
+    "placeholders": {}
+  },
+  "signUp": "サインアップ",
+  "@signUp": {
+    "description": "タイトル",
+    "type": "text",
+    "placeholders": {}
+  },
+  "guideToSignUp": "初めて利用する方\n（サインアップ）",
+  "@guideToSignUp": {
+    "description": "メッセージ",
+    "type": "text",
+    "placeholders": {}
+  },
+  "guideToSignIn": "既にアカウントをお持ちの方\n（サインイン）",
+  "@guideToSignIn": {
+    "description": "メッセージ",
+    "type": "text",
+    "placeholders": {}
+  },
+  "messageInputEmail": "Eメールアドレスを入力してください",
+  "@messageInputEmail": {
+    "description": "メッセージ",
+    "type": "text",
+    "placeholders": {}
+  },
+  "messageInputPassword": "パスワードを入力してください",
+  "@messageInputPassword": {
+    "description": "メッセージ",
+    "type": "text",
+    "placeholders": {}
+  },
+  "inputWarningDisplayName": "表示名を入力してください",
+  "@inputWarningDisplayName": {
+    "description": "警告メッセージ",
+    "type": "text",
+    "placeholders": {}
+  },
+  "inputWarningEmail": "emailを入力してください",
+  "@inputWarningEmail": {
+    "description": "警告メッセージ",
+    "type": "text",
+    "placeholders": {}
+  },
+  "inputWarningPassword": "パスワードを入力してください",
+  "@inputWarningPassword": {
+    "description": "警告メッセージ",
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorSignIn": "サインインでエラーが発生しました。",
+  "@errorSignIn": {
+    "description": "エラーメッセージ",
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorSignUp": "サインアップでエラーが発生しました。",
+  "@errorSignUp": {
+    "description": "エラーメッセージ",
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorSignOut": "サインアウトでエラーが発生しました。",
+  "@errorSignOut": {
+    "description": "エラーメッセージ",
+    "type": "text",
+    "placeholders": {}
+  }
+}

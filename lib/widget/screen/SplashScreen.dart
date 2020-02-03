@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_sample/api/firebase/Auth.dart';
+import 'package:flutter_firebase_sample/l10n/Strings.dart';
 import 'HomeScreen.dart';
 import 'SignInScreen.dart';
 import 'SignUpScreen.dart';
@@ -47,17 +48,17 @@ class _SplashScreenState extends State<SplashScreen> {
       switch (_authStatus) {
         case AuthStatus.notSignedIn:
           Navigator.pushReplacement(context, MaterialPageRoute(
-              builder: (context) => new SignInScreen(title: 'SignIn', auth: widget.auth)
+              builder: (context) => new SignInScreen(title: Strings.of(context).signIn, auth: widget.auth)
           ));
           break;
         case AuthStatus.signedUp:
           Navigator.push(context, MaterialPageRoute(
-              builder: (context) => new SignUpScreen(title: 'SignUp', auth: widget.auth)
+              builder: (context) => new SignUpScreen(title: Strings.of(context).signUp, auth: widget.auth)
           ));
           break;
         case AuthStatus.signedIn:
           Navigator.pushReplacement(context, MaterialPageRoute(
-              builder: (context) => new HomeScreen(title: 'Home', auth: widget.auth)
+              builder: (context) => new HomeScreen(title: Strings.of(context).home, auth: widget.auth)
           ));
           break;
       }

@@ -13,4 +13,8 @@ class Util implements BaseUtil {
     return formatted;
   }
 
+  static bool isDebug() {
+    return const bool.fromEnvironment('dart.vm.product');
+  }
+
 }

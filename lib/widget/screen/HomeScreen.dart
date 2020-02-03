@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_sample/api/firebase/Auth.dart';
+import 'package:flutter_firebase_sample/l10n/Strings.dart';
+import 'package:flutter_firebase_sample/util/Util.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'SignInScreen.dart';
@@ -22,11 +24,15 @@ class _HomeScreenState extends State<HomeScreen> {
     try {
       widget.auth.signOut();
       Navigator.pushReplacement(context, MaterialPageRoute(
-          builder: (context) => new SignInScreen(title: 'SignIn', auth: widget.auth)
+          builder: (context) => new SignInScreen(title: Strings.of(context).signOut, auth: widget.auth)
       ));
     } catch (e) {
+      String msg = Strings.of(context).errorSignOut;
+      if (Util.isDebug()) {
+        msg += '\n\n${e.toString()}';
+      }
       Fluttertoast.showToast(
-          msg: 'サインアウトでエラーが発生しました。\n\n${e.toString()}',
+          msg: msg,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIos: 1,
@@ -45,14 +51,14 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Text('Home'),
+        child: Text(Strings.of(context).home),
       ),
       drawer: new Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text('メニュー'),
+              child: Text(Strings.of(context).menu),
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/splash.png'),
@@ -62,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             ListTile(
-              title: Text('サインアウト'),
+              title: Text(Strings.of(context).signOut),
               onTap: onSignOut,
             ),
           ],

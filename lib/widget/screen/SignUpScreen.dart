@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_sample/api/firebase/Auth.dart';
 import 'package:flutter_firebase_sample/api//model/User.dart';
+import 'package:flutter_firebase_sample/l10n/Strings.dart';
+import 'package:flutter_firebase_sample/util/Util.dart';
 import 'package:flutter_firebase_sample/widget/component/PrimaryButton.dart';
 import 'package:flutter_firebase_sample/widget/screen/HomeScreen.dart';
 import 'package:progress_dialog/progress_dialog.dart';
@@ -53,11 +55,15 @@ class _SignUpState extends State<SignUpScreen> {
           progress.dismiss();
         }
         Navigator.pushReplacement(context, MaterialPageRoute(
-            builder: (context) => new HomeScreen(title: 'Home', auth: widget.auth)
+            builder: (context) => new HomeScreen(title: Strings.of(context).home, auth: widget.auth)
         ));
       } catch (e) {
+        String msg = Strings.of(context).errorSignUp;
+        if (Util.isDebug()) {
+          msg += '\n\n${e.toString()}';
+        }
         setState(() {
-          _authHint = 'サインアップでエラーが発生しました。\n\n${e.toString()}';
+          _authHint = msg;
         });
         print(e);
       } finally {
@@ -74,24 +80,24 @@ class _SignUpState extends State<SignUpScreen> {
     return [
       padded(child: new TextFormField(
         key: new Key('displayName'),
-        decoration: new InputDecoration(labelText: 'Name'),
+        decoration: new InputDecoration(labelText: Strings.of(context).displayName),
         autocorrect: false,
-        validator: (val) => val.isEmpty ? '表示名を入力してください' : null,
+        validator: (val) => val.isEmpty ? Strings.of(context).inputWarningDisplayName : null,
         onSaved: (val) => _user.displayName = val,
       )),
       padded(child: new TextFormField(
         key: new Key('email'),
-        decoration: new InputDecoration(labelText: 'Email'),
+        decoration: new InputDecoration(labelText: Strings.of(context).email),
         autocorrect: false,
-        validator: (val) => val.isEmpty ? 'emailを入力してください' : null,
+        validator: (val) => val.isEmpty ? Strings.of(context).inputWarningEmail : null,
         onSaved: (val) => _user.email = val,
       )),
       padded(child: new TextFormField(
         key: new Key('password'),
-        decoration: new InputDecoration(labelText: 'Password'),
+        decoration: new InputDecoration(labelText: Strings.of(context).password),
         obscureText: true,
         autocorrect: false,
-        validator: (val) => val.isEmpty ? 'パスワードを入力してください' : null,
+        validator: (val) => val.isEmpty ? Strings.of(context).inputWarningPassword : null,
         onSaved: (val) => _user.password = val,
       )),
     ];
@@ -101,7 +107,7 @@ class _SignUpState extends State<SignUpScreen> {
     return [
       new PrimaryButton(
         key: new Key('register'),
-        text: 'サインアップ',
+        text: Strings.of(context).signUp,
         height: 44.0,
         onPressed: onPressSignUp
       ),
@@ -109,7 +115,7 @@ class _SignUpState extends State<SignUpScreen> {
         key: new Key('login'),
         textColor: Colors.green,
         child: new Text(
-            "既にアカウントをお持ちの方\n（サインイン）",
+            Strings.of(context).guideToSignIn,
             textAlign: TextAlign.center
         ),
         onPressed: onPressSignIn
