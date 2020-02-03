@@ -112,7 +112,7 @@ class Strings {
     name: 'guideToSignIn',
     desc: 'メッセージ',
   );
-  
+
   // ↑↑↑　メッセージ　↑↑↑
 
   // ↓↓↓　警告メッセージ　↓↓↓
