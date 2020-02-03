@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-02-03T16:31:54.882627",
+  "@@last_modified": "2020-02-03T16:50:52.394764",
   "displayName": "表示名",
   "@displayName": {
     "description": "共通ワード",
@@ -60,25 +60,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "messageInputEmail": "Eメールアドレスを入力してください",
-  "@messageInputEmail": {
-    "description": "メッセージ",
-    "type": "text",
-    "placeholders": {}
-  },
-  "messageInputPassword": "パスワードを入力してください",
-  "@messageInputPassword": {
-    "description": "メッセージ",
-    "type": "text",
-    "placeholders": {}
-  },
   "inputWarningDisplayName": "表示名を入力してください",
   "@inputWarningDisplayName": {
     "description": "警告メッセージ",
     "type": "text",
     "placeholders": {}
   },
-  "inputWarningEmail": "emailを入力してください",
+  "inputWarningEmail": "Eメールを入力してください",
   "@inputWarningEmail": {
     "description": "警告メッセージ",
     "type": "text",

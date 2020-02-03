@@ -105,7 +105,7 @@ class _SignInScreenState extends State<SignInScreen> {
         key: new Key('email'),
         decoration: new InputDecoration(labelText: Strings.of(context).email),
         autocorrect: false,
-        validator: (val) => val.isEmpty ? Strings.of(context).messageInputEmail : null,
+        validator: (val) => val.isEmpty ? Strings.of(context).inputWarningEmail : null,
         onSaved: (val) => _user.email = val,
       )),
       padded(child: new TextFormField(
@@ -113,7 +113,7 @@ class _SignInScreenState extends State<SignInScreen> {
         decoration: new InputDecoration(labelText: Strings.of(context).password),
         obscureText: true,
         autocorrect: false,
-        validator: (val) => val.isEmpty ? Strings.of(context).messageInputPassword : null,
+        validator: (val) => val.isEmpty ? Strings.of(context).inputWarningPassword : null,
         onSaved: (val) => _user.password = val,
       )),
     ];
@@ -143,7 +143,7 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login Screen'),
+        title: Text(Strings.of(context).signIn),
       ),
       body: new Center(
         child: new Form(

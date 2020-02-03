@@ -112,18 +112,7 @@ class Strings {
     name: 'guideToSignIn',
     desc: 'メッセージ',
   );
-
-  String get messageInputEmail => Intl.message(
-    'Eメールアドレスを入力してください',
-    name: 'messageInputEmail',
-    desc: 'メッセージ',
-  );
-
-  String get messageInputPassword => Intl.message(
-    'パスワードを入力してください',
-    name: 'messageInputPassword',
-    desc: 'メッセージ',
-  );
+  
   // ↑↑↑　メッセージ　↑↑↑
 
   // ↓↓↓　警告メッセージ　↓↓↓
@@ -134,7 +123,7 @@ class Strings {
   );
 
   String get inputWarningEmail => Intl.message(
-    'emailを入力してください',
+    'Eメールを入力してください',
     name: 'inputWarningEmail',
     desc: '警告メッセージ',
   );
