@@ -7,6 +7,7 @@ import io.flutter.plugins.firebaseauth.FirebaseAuthPlugin;
 import io.flutter.plugins.firebase.core.FirebaseCorePlugin;
 import io.flutter.plugins.firebasemessaging.FirebaseMessagingPlugin;
 import io.github.ponnamkarthik.toast.fluttertoast.FluttertoastPlugin;
+import io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin;
 
 /**
  * Generated file. Do not edit.
@@ -22,6 +23,7 @@ public final class GeneratedPluginRegistrant {
     FirebaseCorePlugin.registerWith(registry.registrarFor("io.flutter.plugins.firebase.core.FirebaseCorePlugin"));
     FirebaseMessagingPlugin.registerWith(registry.registrarFor("io.flutter.plugins.firebasemessaging.FirebaseMessagingPlugin"));
     FluttertoastPlugin.registerWith(registry.registrarFor("io.github.ponnamkarthik.toast.fluttertoast.FluttertoastPlugin"));
+    SharedPreferencesPlugin.registerWith(registry.registrarFor("io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin"));
   }
 
   private static boolean alreadyRegisteredWith(PluginRegistry registry) {

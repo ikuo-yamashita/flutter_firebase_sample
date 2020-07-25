@@ -62,7 +62,6 @@ class _SignUpState extends State<SignUpScreen> {
       } finally {
         if (progress.isShowing()) {
           progress.hide();
-          progress.dismiss();
         }
       }
     }

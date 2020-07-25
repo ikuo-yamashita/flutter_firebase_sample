@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_app/api/firebase/Auth.dart';
 import 'package:flutter_app/api//model/User.dart';
 import 'package:flutter_app/widget/component/PrimaryButton.dart';
@@ -52,7 +53,6 @@ class _SignInScreenState extends State<SignInScreen> {
       } finally {
         if (progress.isShowing()) {
           progress.hide();
-          progress.dismiss();
         }
       }
     }
