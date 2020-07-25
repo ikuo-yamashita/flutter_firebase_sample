@@ -45,6 +45,17 @@ class _SignInScreenState extends State<SignInScreen> {
         progress.show();
         await widget.auth.signIn(_user.email, _user.password);
         widget.onSignIn();
+      } on PlatformException catch(e) {
+        String errorCode = e.code.toString();
+        setState(() {
+          if (errorCode == 'ERROR_USER_NOT_FOUND') {
+            _authHint = 'ユーザが存在しません\nサインアップしてください';
+          } else if (errorCode == 'ERROR_WRONG_PASSWORD') {
+            _authHint = 'パスワードが間違っています';
+          } else {
+            _authHint = 'サインインでエラーが発生しました。\n\n${e.toString()}';
+          }
+        });
       } catch (e) {
         setState(() {
           _authHint = 'サインインでエラーが発生しました。\n\n${e.toString()}';
